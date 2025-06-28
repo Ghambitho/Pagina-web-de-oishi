@@ -1,0 +1,777 @@
+/* Paleta principal: negro, rojo y naranja elegante */
+:root {
+  --naranja: #ff7300;
+  --naranja-oscuro: #c85000;
+  --rojo-logo: #d72638;
+  --negro: #181818;
+  --blanco: #fff;
+  --gris: #f5f5f5;
+  --borde: #ececec;
+}
+
+body {
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  background: var(--blanco);
+  color: var(--negro);
+  margin: 0;
+}
+
+header {
+  background: var(--negro);
+  color: var(--blanco);
+  padding: 24px 0 12px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  border-bottom: 4px solid var(--rojo-logo);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.navbar h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--rojo-logo);
+}
+
+.navbar nav a, .navbar nav button {
+  color: var(--blanco);
+  text-decoration: none;
+  margin-left: 24px;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-family: inherit;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.navbar nav a:hover, .navbar nav button:hover {
+  color: var(--naranja);
+}
+
+.navbar nav a::after, .navbar nav button::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--naranja);
+  transition: width 0.3s;
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+}
+
+.navbar nav a:hover::after, .navbar nav button:hover::after {
+  width: 100%;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 32px auto 0 auto;
+  padding: 0 24px;
+}
+
+.hero img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+}
+
+.menu-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin: 40px auto;
+  max-width: 1100px;
+  padding: 0 24px;
+}
+
+.producto {
+  background: var(--blanco);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s;
+  border: 1px solid var(--borde);
+}
+.producto:hover {
+  box-shadow: 0 6px 24px rgba(255,115,0,0.13);
+}
+.producto img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.producto-info {
+  padding: 18px 16px 12px 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.producto-nombre {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--rojo-logo);
+  margin-bottom: 8px;
+}
+.producto-desc {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 12px;
+}
+.producto-precio {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--negro);
+  margin-bottom: 12px;
+}
+.producto-boton {
+  background: var(--naranja);
+  color: var(--blanco);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.producto-boton:hover {
+  background: var(--rojo-logo);
+}
+
+footer {
+  background: var(--negro);
+  color: var(--naranja);
+  text-align: center;
+  padding: 24px 0;
+  margin-top: 48px;
+  font-size: 1rem;
+  border-top: 4px solid var(--rojo-logo);
+}
+
+/* Carro de compras */
+.carro {
+  position: fixed;
+  top: 80px;
+  right: 32px;
+  background: var(--blanco);
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.13);
+  width: 340px;
+  max-width: 90vw;
+  z-index: 1000;
+  padding: 24px 20px 16px 20px;
+  border: 1px solid var(--borde);
+  display: none;
+}
+.carro.visible {
+  display: block;
+}
+.carro-titulo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--rojo-logo);
+  margin-bottom: 12px;
+}
+.carro-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px 0;
+}
+.carro-lista li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.carro-total {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.carro-boton {
+  background: var(--rojo-logo);
+  color: var(--blanco);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 8px;
+  transition: background 0.2s;
+}
+.carro-boton:hover {
+  background: var(--naranja-oscuro);
+}
+.carro-cerrar {
+  background: none;
+  border: none;
+  color: var(--rojo-logo);
+  font-size: 1.2rem;
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .navbar, .hero, .menu-productos {
+    padding: 0 8px;
+  }
+  .carro {
+    right: 8px;
+    width: 98vw;
+    padding: 16px 6px 10px 6px;
+  }
+}
+
+/* Estilos de la nueva cabecera principal (logo y navegación) */
+.main-header {
+    background-color: var(--negro); /* Fondo negro para toda la cabecera */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-bottom: 4px solid var(--rojo-logo);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Espacio entre logo y navegación */
+    align-items: center;
+    max-width: 1200px; /* Ancho máximo del contenido */
+    margin: 0 auto;
+    padding: 0 24px; /* Relleno lateral */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+}
+
+.logo img {
+    height: 80px; /* Ajusta el tamaño del logo según la imagen */
+    width: auto;
+    padding: 10px 0; /* Espacio alrededor del logo */
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    background-color: var(--naranja); /* Fondo naranja para la barra de navegación */
+    padding: 15px 24px; /* Relleno vertical y lateral */
+    border-radius: 8px 8px 0 0; /* Bordes superiores redondeados */
+    margin-top: auto; /* Alinea la navegación en la parte inferior del contenedor si hay espacio */
+    flex-wrap: wrap; /* Permite que los enlaces se envuelvan */
+    gap: 20px; /* Espacio entre los enlaces */
+}
+
+.main-nav a {
+    color: var(--blanco); /* Color del texto de los enlaces */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent; /* Para el efecto hover/activo */
+}
+
+.main-nav a.activo, .main-nav a:hover {
+    color: var(--blanco); /* Mantener color blanco */
+    border-bottom-color: var(--rojo-logo); /* Borde rojo al pasar el mouse o estar activo */
+}
+
+/* Ajustes responsivos para la cabecera */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column; /* Apila logo y navegación en pantallas pequeñas */
+        align-items: center;
+        padding: 0 10px;
+    }
+
+    .logo img {
+        height: 60px; /* Logo más pequeño en móviles */
+        padding: 10px 0 0 0;
+    }
+
+    .main-nav {
+        width: 100%; /* La navegación ocupa todo el ancho */
+        justify-content: center; /* Centra los enlaces */
+        padding: 10px 10px; /* Ajusta el relleno */
+        border-radius: 0; /* Sin bordes redondeados en móviles si ocupa todo el ancho */
+        gap: 15px; /* Espacio reducido entre enlaces */
+    }
+
+    .main-nav a {
+        font-size: 1rem;
+    }
+}
+
+/* Estilos de la barra superior y navegación de index.php */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 24px auto 0 auto;
+  padding: 0 24px;
+  gap: 18px;
+}
+.delivery-bar {
+  display: flex;
+  align-items: center;
+  background: var(--blanco);
+  border-radius: 28px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  min-width: 340px;
+  max-width: 500px;
+  flex: 1;
+  margin-right: 12px;
+  transition: box-shadow 0.3s ease;
+}
+.delivery-bar:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+.delivery-bar i { color: var(--rojo-logo); margin-right: 10px; font-size: 1.3rem; }
+.delivery-bar .label { color: var(--rojo-logo); font-weight: 700; margin-right: 8px; }
+.delivery-bar .address { color: var(--negro); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 240px; }
+.delivery-bar .dropdown { margin-left: 12px; color: #666; cursor: pointer; font-size: 1.2rem; transition: color 0.3s; }
+.delivery-bar .dropdown:hover {
+  color: var(--negro);
+}
+.search-bar {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 10px 22px;
+  display: flex;
+  align-items: center;
+  min-width: 260px;
+  flex: 1;
+  margin-left: 12px;
+}
+.search-bar i { color: #bbb; margin-right: 8px; }
+.search-bar input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1.08rem;
+  width: 100%;
+  color: #222;
+}
+.user-cart {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.user-icon {
+  width: 36px; height: 36px;
+  background: var(--rojo-logo);
+  color: #fff;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.cart-icon {
+  font-size: 1.5rem;
+  color: var(--negro);
+  position: relative;
+  cursor: pointer;
+}
+.cart-badge {
+  position: absolute;
+  top: -7px; right: -10px;
+  background: var(--rojo-logo);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  padding: 2px 6px;
+  font-weight: 700;
+}
+.logo-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 18px 0 0 0;
+}
+.logo-center img {
+  height: 100px;
+  width: auto;
+  margin-bottom: 12px;
+}
+.logo-center nav {
+  display: flex;
+  gap: 32px;
+  margin-top: 8px;
+}
+.logo-center nav a {
+  color: var(--negro);
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: color 0.2s;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+.logo-center nav a.activo, .logo-center nav a:hover {
+  color: var(--rojo-logo);
+  border-bottom: 2px solid var(--rojo-logo);
+}
+.sucursales-section {
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  padding: 0 24px;
+}
+.sucursales-section h2 {
+  color: var(--rojo-logo);
+  font-size: 2rem;
+  margin-bottom: 8px;
+  text-align: left;
+}
+.sucursales-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-top: 32px;
+  justify-content: flex-start;
+}
+.sucursal-card2 {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 28px 22px 22px 22px;
+  min-width: 260px;
+  max-width: 320px;
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+.sucursal-card2 img { height: 38px; margin-bottom: 10px; }
+.sucursal-card2 h3 {
+  color: var(--rojo-logo);
+  font-size: 1.18rem;
+  margin: 0 0 6px 0;
+  font-weight: 700;
+}
+.sucursal-card2 p { color: #222; margin: 0 0 8px 0; font-size: 1rem; }
+.sucursal-card2 .ver-mapa {
+  color: var(--naranja);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-top: 8px;
+  display: inline-block;
+}
+.sucursal-card2 .ver-mapa:hover { text-decoration: underline; }
+.sucursal-card2 .badge {
+  background: var(--naranja);
+  color: #fff;
+  border-radius: 8px;
+  padding: 2px 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 8px;
+  display: inline-block;
+}
+
+/* Estilos del carrito lateral de irrazavalsucursal.php */
+.carro-lateral {
+  position: fixed;
+  top: 0; right: 0;
+  width: 360px; max-width: 95vw;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -2px 0 16px rgba(0,0,0,0.13);
+  z-index: 2000;
+  padding: 32px 24px 24px 24px;
+  display: flex; flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s;
+}
+.carro-lateral.visible { transform: translateX(0); }
+.carro-lateral-cerrar {
+  position: absolute; top: 18px; right: 22px;
+  background: none; border: none; font-size: 2rem;
+  color: var(--rojo-logo); cursor: pointer;
+}
+.carro-lateral h2 { color: var(--rojo-logo); margin-bottom: 18px; }
+.carro-lista { list-style: none; padding: 0; margin: 0 0 18px 0; }
+.carro-lista li { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.carro-total { font-weight: 700; margin-bottom: 18px; }
+.carro-boton { background: var(--naranja); color: #fff; border: none; border-radius: 8px; padding: 12px 0; font-size: 1.1rem; font-weight: 600; cursor: pointer; width: 100%; }
+.carro-boton:hover { background: var(--rojo-logo); }
+
+/* Estilo para el logo grande en index.php */
+.logo-grande {
+  width: 250px; /* Puedes ajustar el tamaño según lo necesites */
+  height: auto; /* Mantiene la proporción */
+}
+
+/* Estilos de la ventana modal de selección de sucursal */
+#sucursal-modal {
+  display: none; /* Inicialmente oculta */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6); /* Fondo semi-transparente más oscuro */
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+#sucursal-modal .modal-content {
+  background-color: var(--blanco);
+  padding: 30px 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Sombra más pronunciada */
+  width: 90%; /* Ancho responsivo */
+  max-width: 450px; /* Ancho máximo */
+  position: relative; /* Para posicionar el botón de cerrar */
+}
+
+#sucursal-modal h3 {
+  color: var(--rojo-logo);
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+#modal-sucursal-options {
+    display: flex;
+    flex-direction: column; /* Botones apilados verticalmente */
+    gap: 15px; /* Espacio entre botones */
+    margin-bottom: 20px;
+}
+
+#modal-sucursal-options button {
+  padding: 15px 25px;
+  cursor: pointer;
+  border: 2px solid var(--naranja); /* Borde más visible */
+  border-radius: 8px; /* Bordes ligeramente más redondeados */
+  background-color: var(--blanco);
+  color: var(--naranja);
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  width: 100%; /* Botones de ancho completo */
+  text-align: center;
+}
+
+#modal-sucursal-options button:hover {
+  background-color: var(--naranja);
+  color: var(--blanco);
+  border-color: var(--naranja);
+}
+
+#close-modal {
+  position: absolute; /* Posicionar en la esquina superior derecha */
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #aaa; /* Color más sutil */
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+#close-modal:hover {
+  color: var(--negro); /* Cambiar color al pasar el mouse */
+}
+
+/* Asegurar que la modal usa flexbox cuando está visible para centrar */
+#sucursal-modal.visible {
+    display: flex;
+}
+
+/* Estilos de la barra de delivery (posiblemente obsoletos o no usados después de cambios) */
+.delivery-bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 10px 22px;
+  font-size: 1.08rem;
+  min-width: 340px;
+  max-width: 480px;
+  flex: 1;
+  margin-right: 12px;
+}
+
+/* Estilos para el ícono del carrito flotante */
+.carrito-flotante {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ef4444; /* Rojo 500 de Tailwind */
+    color: white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 40; /* Asegura que esté por encima de otros elementos */
+    transition: transform 0.3s ease-in-out;
+}
+
+.carrito-flotante:hover {
+    transform: scale(1.1);
+}
+
+.carrito-flotante .cantidad-items {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #f97316; /* Naranja 500 de Tailwind */
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    /* Asegura que el texto no se seleccione */
+    user-select: none;
+    /* Asegura que el número no se vea afectado por el hover del padre */
+    pointer-events: none;
+}
+
+/* Estilos para el sidebar del carrito */
+/* La clase 'visible' se añadirá/removerá por JavaScript */
+.carro-lateral {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%; /* Ajusta según necesidad */
+    max-width: 320px; /* Ancho máximo */
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
+    z-index: 50; /* Mayor que el carrito flotante */
+    transform: translateX(100%); /* Empieza oculto fuera de la pantalla */
+    transition: transform 0.3s ease-in-out;
+    display: flex; /* Usar flexbox para la estructura interna */
+    flex-direction: column;
+}
+
+.carro-lateral.visible {
+    transform: translateX(0); /* Se desliza hacia adentro */
+}
+
+.carro-lateral .p-4 {
+    padding: 1rem;
+}
+
+.carro-lateral .border-b {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.carro-lateral .border-t {
+    border-top: 1px solid #e5e7eb;
+}
+
+.carro-lateral .absolute.top-0 {
+    top: 0;
+}
+
+.carro-lateral .right-0 {
+    right: 0;
+}
+
+/* Estilos para la lista de ítems en el carrito */
+#contenido-carrito-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-bottom: 120px;
+}
+
+#contenido-carrito {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#contenido-carrito li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+#contenido-carrito li span:first-child {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+#contenido-carrito li button {
+    background: none;
+    border: none;
+    color: #ef4444; /* Rojo 600 de Tailwind */
+    cursor: pointer;
+    font-size: 0.875rem;
+    padding: 0;
+    margin-left: 10px;
+}
+
+#contenido-carrito li button:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para el pie de página del carrito */
+.carro-lateral .absolute.bottom-0 {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+}
+
+.carro-lateral .carro-boton {
+     width: 100%;
+}
+
+/* Ajuste para el botón cerrar en el sidebar */
+#cerrar-carro {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1;
+}
+
+.nav-link-disabled {
+    color: #9ca3af !important; /* Tailwind gray-400 */
+    pointer-events: none;
+    text-decoration: none !important;
+    cursor: default;
+}
+
+/* Add a high z-index to the product details modal to ensure it's on top */
+#productDetailsModalContainer {
+    z-index: 9999 !important;
+    background-color: rgba(0,0,0,0.75) !important;
+}
